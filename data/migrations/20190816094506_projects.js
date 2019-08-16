@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
         tbl.string('name', 255)
             .notNullable()
             .unique();
-        tbl.string('description', 500);
+        tbl.string('project_description', 500);
         tbl.boolean('completed')
             .defaultTo(false);
     })
@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
         tbl.string('name', 255)
             .notNullable()
             .unique()
-        tbl.string('description', 500);
+        tbl.string('resource_description', 500);
     })
     .createTable('project_resources', tbl => {
         tbl.increments();
@@ -54,8 +54,8 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTableIfExists('tasks')
-    .dropTableIfExists('project_resources')
-    .dropTableIfExists('resources')
-    .dropTableIfExists('projects')
+  .dropTableIfExists('tasks')
+  .dropTableIfExists('project_resources')
+  .dropTableIfExists('projects')
+  .dropTableIfExists('resources')
 };
