@@ -1,11 +1,15 @@
 const express = require('express');
 const helmet = require('helmet');
 
+const projectsRouter = require('./projects/projects-router.js');
+
 const server = express();
 
 server.use(express.json());
 server.use(helmet());
 server.use(logger)
+
+server.use('/projects', projectsRouter);
 
 function logger(req, res, next) {
     const method = req.method;
