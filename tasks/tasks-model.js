@@ -6,7 +6,9 @@ module.exports = {
 }
 
 function getTasks() {
-    return db('tasks');
+    return db('tasks as t')
+        .innerJoin('projects as p', 't.project_id', '=', 'p.id')
+        .select('p.name', 'p.project_description')
 }
 
 function addTask(task) {
