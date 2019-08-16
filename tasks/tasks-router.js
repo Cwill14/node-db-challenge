@@ -18,4 +18,14 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.post('/', async (req, res) => {
+    const newTask = req.body;
+    try {
+        const task = await Tasks.addTask(newTask);
+        res.status(201).json(task);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 module.exports = router;
